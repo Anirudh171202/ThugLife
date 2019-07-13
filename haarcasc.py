@@ -18,15 +18,15 @@ while 1:
     for (x,y,w,h) in faces:
         cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
         
-        facearea=gray[y:y +h, x:x+w]
-        faceareacol = img[y:y +h, x:x+w]
+        facearea=gray[y:y +h*2//3, x:x+w]
+        faceareacol = img[y:y*2//3 +h, x:x+w]
         eyes = eye_cascade.detectMultiScale(facearea)
         for (a,b,c,d) in eyes :
             
             cv2.circle(faceareacol, (a + 30,b + 30), 25 , (0, 0, 0), -1)
             
-            if y + a < (2*x + w)//2.5 :
-                cv2.line(faceareacol, (a + 30, b+ 30), (a + 100, b + 30), (0, 0, 0), 10)
+            if  a < (w)//2:
+                cv2.line(faceareacol, (a +30 , b+ 30), (a + 100, b + 30), (0, 0, 0), 10)
             
             
         cv2.putText(img, "Ug Lee", (x, y + h + h//5 ), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 250, 150), 2) 
