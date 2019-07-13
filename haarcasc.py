@@ -9,8 +9,7 @@ import math
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 cap = cv2.VideoCapture(0)
-sunglasses = cv2.imread('sunglasses.png')
-print('Shape is ', sunglasses.shape[0], sunglasses.shape[1])
+
 while 1:
     ret, img = cap.read()
    
@@ -24,7 +23,7 @@ while 1:
         eyes = eye_cascade.detectMultiScale(facearea)
         for (a,b,c,d) in eyes :
             
-            cv2.circle(faceareacol, (a + 30,b + 30), 30 , (0, 0, 0), -1)
+            cv2.circle(faceareacol, (a + 30,b + 30), 25 , (0, 0, 0), -1)
             
             if y + a < (2*x + w)//2.5 :
                 cv2.line(faceareacol, (a + 30, b+ 30), (a + 100, b + 30), (0, 0, 0), 10)
